@@ -1,0 +1,58 @@
+ @HostListener('document:mouseover', ['$event'])
+  mouseover(event:any) {
+      if(event.target.matches('myimg')) {
+          this.moveMagnifier(event)
+      }
+    }
+ magnify(zoom:any) {
+    /*create magnifier glass:*/
+    this.myzoom =zoom
+    var img = this.img.nativeElement
+    var magdiv = this.magdiv.nativeElement
+    console.log(img)
+    /*set background properties for the magnifier glass:*/
+    this.mltstyle.background= "url('" + img.src + "')";
+   this.mltstyle.backgroundRepeat = "no-repeat";
+    this.mltstyle.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+    console.log(this.mltstyle,'mltstyle')
+    this.bw = 3;
+    this.w = magdiv.offsetWidth / 2;
+    this.h = magdiv.offsetHeight / 2;
+    /*execute a function when someone moves the magnifier glass over the image:*/
+    magdiv.addEventListener("mousemove", this.moveMagnifier);
+    img.addEventListener("mouseover", this.moveMagnifier); 
+    
+  }
+   moveMagnifier(e:any) {
+      var pos, x, y;
+      var img = this.img.nativeElement
+      /*prevent any other actions that may occur when moving over the image*/
+      // e.preventDefault();
+      /*get the cursor's x and y positions:*/
+      pos = this.getCursorPos(e);
+      x = pos.x;
+      y = pos.y;
+      /*prevent the magnifier glass from being positioned outside the image:*/
+      if (x > img.width - (this.w / this.myzoom)) {x = img.width - (this.w / this.myzoom);}
+      if (x < this.w / this.myzoom) {x = this.w / this.myzoom;}
+      if (y > img.height - (this.h /this.myzoom)) {y = img.height - (this.h / this.myzoom);}
+      if (y < this.h / this.myzoom) {y = this.h / this.myzoom;}
+      /*set the position of the magnifier glass:*/
+      this.mltstyle.left = (x - this.w) + "px";
+      this.mltstyle.top = (y - this.h) + "px";
+      /*display what the magnifier glass "sees":*/
+      this.mltstyle.backgroundPosition = "-" + ((x * this.myzoom) - this.w + this.bw) + "px -" + ((y * this.myzoom) - this.h + this.bw) + "px";
+    }
+    getCursorPos(e:any) {
+      var a, x = 0, y = 0;
+      e = e || window.event;
+      /*get the x and y positions of the image:*/
+      a = this.img.nativeElement.getBoundingClientRect();
+      /*calculate the cursor's x and y coordinates, relative to the image:*/
+      x = e.pageX - a.left;
+      y = e.pageY - a.top;
+      /*consider any page scrolling:*/
+      x = x - window.pageXOffset;
+      y = y - window.pageYOffset;
+      return {x : x, y : y};
+    }

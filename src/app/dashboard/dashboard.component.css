@@ -1,0 +1,51 @@
+.testimg{
+width:200;
+height:200px;
+margin : auto;
+}
+.img-magnifier-container {
+    position:relative;
+    background: rgb(248, 239, 223);
+  }
+.img-magnifier-glass{
+position: absolute;
+border: 3px solid black;
+border-radius: 50%;
+cursor: none;
+width: 100px;
+height: 100px;
+}
+.box{
+    width:100px;
+    height:100px;
+    position:relative;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    border:10px solid gainsboro;
+    border-top-color: green;  
+    animation-name: test;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes test{
+   0%{
+    transform: rotate(0deg);
+    border-top-color:green; 
+   }
+   25%{
+    border-top-color: rgb(222, 203, 55); 
+   }
+   75%{
+    border-top-color: rgb(251, 92, 71); 
+   }
+   50%{
+    border-top-color: rgb(128, 0, 75); 
+   }
+   100%{
+    transform: rotate(360deg);
+    border-top-color: rgb(45, 0, 128); 
+   }
+}
