@@ -17,25 +17,26 @@ export class ZoomFnDirective {
     // console.log(event,'mouse intered initialize glass')
     this.magdiv = event.target.children[0]
     this.img = event.target.children[1]
+    this.magnify(this.magdiv,this.img,this.zoom)
     // console.log(this.magdiv,'first magdiv console')
     // console.log(this.img,'fierst img console')
-    this.magnify(this.magdiv,this.img,this.zoom)
   }
   @HostListener('mousemove', ['$event']) onMouseOver(event:any){
-    // console.log(event,'move glass with mouse')
     this.moveMagnifier(this.magdiv,this.img,event,this.zoom)
+    // console.log(event,'move glass with mouse')
     }
   @HostListener('mouseleave', ['$event']) onMouseOut(event:any){
-    console.log(event,'delete magnify glass')
     this.magdiv.style.display ="none"
+    // console.log(event,'delete magnify glass')
     }
 
   magnify(magdiv:any,img:any,zoom:any) {
     /* Set background properties for the magnifier glass: */
+    magdiv.style.display="block";
     magdiv.style.backgroundImage = "url('" + img.src + "')";
     magdiv.style.backgroundRepeat = "no-repeat";
     magdiv.style.position = "absolute";
-    magdiv.style.border ="0.5px solid black";
+    magdiv.style.border ="0.2px solid gray";
     magdiv.style.borderRadius =  "50%";
     magdiv.style.cursor="none";
     magdiv.style.width = "100px";
