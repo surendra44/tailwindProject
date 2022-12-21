@@ -1,7 +1,7 @@
 .testimg{
 width:200;
 height:200px;
-margin : auto;
+/* margin : auto; */
 }
 .img-magnifier-container {
     position:relative;

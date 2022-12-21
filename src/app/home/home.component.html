@@ -10,21 +10,16 @@
     <br><hr><ng-progress id="myProgress"></ng-progress>
     
     <div class="imgbox" >
-         <!-- <div *ngIf="errorText; else elseblock">
+         <div *ngIf="errorText; else elseblock">
             <h3>Sorry! {{errorText}}</h3>
         </div>
-        <ng-template #elseblock> -->
+        <ng-template #elseblock>
        
-        <div class="h-52 w-52 m-5 img-magnifier-container" *ngFor="let item of imageArray" (mousemove)="magnify(myimage,3)">
-          <!-- <div #magdiv class="img-magnifier-glass" [ngStyle]="mltstyle">
-          </div> -->
-          <img  #myimage id="imgId" class="h-52 w-52 myimg" [src]="item.src.original">
+        <div class="h-52 w-52 m-5 img-magnifier-container" *ngFor="let item of imageArray" appZoomFn>
+          <div #magdiv></div>
+          <img  #myimage class="h-52 w-52" [src]="item.src.original">
         </div>
-    <!-- </ng-template> -->
+    </ng-template>
     </div>  
-     <script>
-      /* Execute the magnify function: */
-      magnify("imgId", 3);
-      /* Specify the id of the image, and the strength of the magnifier glass: */
-      </script> 
+     
     

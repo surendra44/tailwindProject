@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +8,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   
   constructor() { }
-
-  // @HostListener('mouseover') onMouseOver(){
-
-  // }
 
   ngOnInit(): void {
   }
